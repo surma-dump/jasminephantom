@@ -1,0 +1,21 @@
+<script src="bower_components/jasmine/lib/jasmine-core/jasmine.js"></script>
+<script src="bower_components/jasmine/src/console/ConsoleReporter.js"></script>
+<script src="suite.js"></script>
+<script>
+	var runner = null;
+	var jasmineEnv = jasmine.getEnv();
+	jasmineEnv.updateInterval = 250;
+	// The reporter must be in a separate variable because the reporter’s
+	// status is evaluated by the PhantomJS runner.
+	var reporter = new jasmine.ConsoleReporter(function(msg) {
+		console.log(msg);
+	}, function(_runner) {
+		runner = _runner;
+		console.log('Reporter finished');
+	}, true);
+	jasmineEnv.addReporter(reporter);
+
+	window.onload = function() {
+		jasmineEnv.execute();
+	}
+</script>
