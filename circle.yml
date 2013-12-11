@@ -1,0 +1,6 @@
+dependencies:
+  post:
+    - bower install
+test:
+  override:
+    - phantomjs ./runner.coffee ./runner.html
